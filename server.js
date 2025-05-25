@@ -6,9 +6,14 @@ import Todo from "./models/todo.model.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://mrhacker10100.github.io'
+];
+
 app.use(cors({
-  origin: "https://mrhacker10100.github.io/to-do-Mern/",
-  methods: ["GET", "POST", "PATCH", "DELETE"],
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials: true,
 }));
 app.use(express.json());
