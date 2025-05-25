@@ -6,7 +6,11 @@ import Todo from "./models/todo.model.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true,
+}));
 app.use(express.json());
 
 connectToDb();
