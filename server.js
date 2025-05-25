@@ -1,11 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import connectToDb from "./database/db.js";
 import Todo from "./models/todo.model.js";
 dotenv.config();
 const app = express();
-const port = process.env.port || 4000;
-
+const port = process.env.PORT || 4000;
+app.use(cors());
 app.use(express.json());
 
 connectToDb();
@@ -70,7 +71,7 @@ app.get("/:todoId",async (req,res)=>{
 
 
 
-app.patch("/:todoId",async (req,res)=>{
+app.delete("/:todoId",async (req,res)=>{
     const todoId = req.params.todoId;
     try{
         const result = await Todo.findByIdAndDelete(todoId);
